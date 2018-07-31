@@ -2,6 +2,22 @@ extends layout
 
 block content
   
-  h1 Welcome to #{title}!
-  
+  h1 > Are you a developer?
+    span _
+  h2
+  canvas
+  form
+    input(name="hacka-email" placeholder="Email here" type="email" id="email" autocomplete="off")
+    select(id="city")
+        option(value="Tehran") Tehran
+        option(value="Karaj") Karaj
+        option(value="Qazvin") Qazvin
+        option(value="Tabriz") Tabriz
+        option(value="Shiraz") Yazd
+        option(value="Isfahan") Isfahan
+        option(value="Mashhad") Mashhad
+        option(value="Shiraz") Shiraz
+        option(value="Other") Other
+  script(src="script.js")
+
 
