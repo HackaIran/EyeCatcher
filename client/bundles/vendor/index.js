@@ -1,3 +1,5 @@
+const axios = require('axios');
+const Row = require('./Row');
 const $ = query => document.querySelector(query);
 
 const config = { speed: 1, canWrite: true }
@@ -65,9 +67,13 @@ class App {
         config.speed = 1;
     }
 
+    sendForm (email, city) {
+        axios.post('/subscribe', { email, city });
+    }
+
     checkFormCommands (e) {
         if (e.key === 'Enter') {
-            console.log($('form input').value, $('form select').value);
+            this.sendForm($('form input').value, $('form select').value);
             $('h2').innerHTML = 'SEE YOU!';
             setTimeout(() => { $('h2').innerHTML = '' }, 1000)
         }
@@ -100,24 +106,6 @@ class App {
                 this.writeChar(char, parseInt(j), (50 - i - 1), (i / row.chars.length))
             }
         }
-    }
-    
-}
-
-class Row {
-
-    constructor () {
-        this.chars = [];
-        for (let i = 0; i < 50; i++) this.addChar();
-    }
-
-    addChar () {
-        this.chars.push(String.fromCharCode(Math.floor(Math.random() * 73) + 49));
-    }
-
-    next () {
-        this.chars.shift();
-        this.addChar();
     }
     
 }
